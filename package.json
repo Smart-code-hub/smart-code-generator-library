@@ -5,9 +5,9 @@
   "main": "index.js",
   "dependencies": {
     "fs-extra": "^8.1.0",
-    "smart-code-core-utility": "https://oauth2:677138f6a916eac5567178aa509ee986f31f453b@github.com/smartcodehubnext/smart-code-core-utility.git",
-    "smart-javascript-api-generator-library": "https://oauth2:677138f6a916eac5567178aa509ee986f31f453b@github.com/smartcodehubnext/smart-javascript-api-generator-library.git",
-    "smart-javascript-react-generator-library": "https://oauth2:677138f6a916eac5567178aa509ee986f31f453b@github.com/smartcodehubnext/smart-javascript-react-generator-library.git"
+    "smart-code-core-utility": "https://github.com/Smart-code-hub/smart-code-core-utility.git",
+    "smart-javascript-api-generator-library": "https://github.com/Smart-code-hub/smart-javascript-api-generator-library.git",
+    "smart-javascript-react-generator-library": "https://github.com/Smart-code-hub/smart-javascript-react-generator-library.git"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
