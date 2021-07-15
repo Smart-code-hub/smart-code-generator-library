@@ -3,6 +3,11 @@ const { UpdateEntities, ZipAFolder } = require("smart-code-core-utility");
 const { GenerateReactProject } = require("./Handlers/FrontEnd/ReactHandler");
 const { GenerateNodeApiProject } = require("./Handlers/Backend/NodeHandler");
 const { copyFolder } = require("smart-code-core-utility");
+import {series} from 'async';
+const {exec} = require('child_process');
+
+
+
 const GenerateProject = async (
   metaData,
   uid,
@@ -25,6 +30,10 @@ const GenerateProject = async (
       __dirname + "/StaticApps/FrontEnd/React/reactstarter",
       reactdir
     );
+    series([
+      () => exec(`cd ${dirNamme}`),
+      () => exec(`npx create-react-app ${reactFolder}`)
+     ]);
     await GenerateReactProject(
       reactdir,
       entities,
