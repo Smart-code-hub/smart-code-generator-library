@@ -3,10 +3,8 @@ const { UpdateEntities, ZipAFolder } = require("smart-code-core-utility");
 const { GenerateReactProject } = require("./Handlers/FrontEnd/ReactHandler");
 const { GenerateNodeApiProject } = require("./Handlers/Backend/NodeHandler");
 const { copyFolder } = require("smart-code-core-utility");
-import {series} from 'async';
-const {exec} = require('child_process');
-
-
+const { series } = require("async");
+const { exec } = require("child_process");
 
 const GenerateProject = async (
   metaData,
@@ -18,22 +16,21 @@ const GenerateProject = async (
 ) => {
   // Update Entities First`
   UpdateEntities(entities);
-  if(!processFiles)
-  return {Message:"Done"}
+  if (!processFiles) return { Message: "Done" };
   //Attach Project related folders in root directory
   const Appdir = dirNamme + `/${resourceUrl}`; // main app directory
 
   if (metaData.serverLessType == "ReactFirebase") {
     const reactFolder = `${resourceUrl}/webStarter`;
     const reactdir = dirNamme + `/${reactFolder}`;
-    await copyFolder(
-      __dirname + "/StaticApps/FrontEnd/React/reactstarter",
-      reactdir
-    );
-    series([
-      () => exec(`cd ${dirNamme}`),
-      () => exec(`npx create-react-app ${reactFolder}`)
-     ]);
+    await exec(`cd  ${reactdir}
+        
+                npx create-react-app ${reactFolder}
+
+                cd ${reactFolder}
+
+                npm i axios bootstrap font-awesome react-bootstrap react-redux redux redux-saga react-router-dom redux-localstorage-simple voca firebase
+    `);
     await GenerateReactProject(
       reactdir,
       entities,
@@ -53,7 +50,6 @@ const GenerateProject = async (
       reactdir
     );
     await GenerateReactProject(reactdir, entities, processFiles);
-   
   }
 
   if (metaData.backEndType == "Node") {
@@ -64,11 +60,9 @@ const GenerateProject = async (
       apidir
     );
     await GenerateNodeApiProject(apidir, entities, processFiles);
-   
   }
- const zip = await GenerateZipOfResourses(Appdir, resourceUrl);
-    return { zip };
- 
+  const zip = await GenerateZipOfResourses(Appdir, resourceUrl);
+  return { zip };
 };
 async function GenerateZipOfResourses(dir, folder) {
   await ZipAFolder.zip(dir, `${dir}.zip`);

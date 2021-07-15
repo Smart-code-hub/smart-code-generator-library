@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "async": "^3.2.0",
     "fs-extra": "^8.1.0",
     "smart-code-core-utility": "https://github.com/Smart-code-hub/smart-code-core-utility.git",
     "smart-javascript-api-generator-library": "https://github.com/Smart-code-hub/smart-javascript-api-generator-library.git",
